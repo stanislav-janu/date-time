@@ -51,6 +51,10 @@ class ManagerTest extends TestCase
 
 		$this->assertSame($date->setQuarter(4)->format('Y-m-d'), '1991-10-01');
 		$this->assertSame($date->setQuarter(4, DateTime::QUARTER_LAST_DAY)->format('Y-m-d'), '1991-12-31');
+
+
+		$this->assertSame((new DateTime(null))->format(DateTime::RFC3339_EXTENDED), (new DateTime('now'))->format(DateTime::RFC3339_EXTENDED));
+
 	}
 
 	/**

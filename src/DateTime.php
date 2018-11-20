@@ -14,8 +14,24 @@ class DateTime extends \Nette\Utils\DateTime
 
 	public function __construct($time = 'now', \DateTimeZone $timezone = null)
 	{
-		if($time instanceof \DateTime)
+		if ($time instanceof \DateTimeInterface)
+		{
+			$timezone = $time->getTimezone();
 			$time = $time->format(\DateTime::RFC3339_EXTENDED);
+		}
+		elseif (is_numeric($time))
+		{
+			if ($time <= self::YEAR)
+				$time += time();
+
+			$time = '@' . $time;
+			$timezone = new \DateTimeZone(date_default_timezone_get());
+		}
+		elseif(is_null($time))
+		{
+			$time = 'now';
+		}
+
 		parent::__construct($time, $timezone);
 	}
 
