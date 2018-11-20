@@ -23,6 +23,34 @@ class ManagerTest extends TestCase
 
 		$this->assertSame($date->setQuarter(4)->format('Y-m-d'), '1991-10-01');
 		$this->assertSame($date->setQuarter(4, DateTime::QUARTER_LAST_DAY)->format('Y-m-d'), '1991-12-31');
+
+		$date = new DateTime(new \DateTime('1991-06-17'));
+
+		$this->assertSame($date->setQuarter(1)->format('Y-m-d'), '1991-01-01');
+		$this->assertSame($date->setQuarter(1, DateTime::QUARTER_LAST_DAY)->format('Y-m-d'), '1991-03-31');
+
+		$this->assertSame($date->setQuarter(2)->format('Y-m-d'), '1991-04-01');
+		$this->assertSame($date->setQuarter(2, DateTime::QUARTER_LAST_DAY)->format('Y-m-d'), '1991-06-30');
+
+		$this->assertSame($date->setQuarter(3)->format('Y-m-d'), '1991-07-01');
+		$this->assertSame($date->setQuarter(3, DateTime::QUARTER_LAST_DAY)->format('Y-m-d'), '1991-09-30');
+
+		$this->assertSame($date->setQuarter(4)->format('Y-m-d'), '1991-10-01');
+		$this->assertSame($date->setQuarter(4, DateTime::QUARTER_LAST_DAY)->format('Y-m-d'), '1991-12-31');
+
+		$date = new DateTime(new \Nette\Utils\DateTime('1991-06-17'));
+
+		$this->assertSame($date->setQuarter(1)->format('Y-m-d'), '1991-01-01');
+		$this->assertSame($date->setQuarter(1, DateTime::QUARTER_LAST_DAY)->format('Y-m-d'), '1991-03-31');
+
+		$this->assertSame($date->setQuarter(2)->format('Y-m-d'), '1991-04-01');
+		$this->assertSame($date->setQuarter(2, DateTime::QUARTER_LAST_DAY)->format('Y-m-d'), '1991-06-30');
+
+		$this->assertSame($date->setQuarter(3)->format('Y-m-d'), '1991-07-01');
+		$this->assertSame($date->setQuarter(3, DateTime::QUARTER_LAST_DAY)->format('Y-m-d'), '1991-09-30');
+
+		$this->assertSame($date->setQuarter(4)->format('Y-m-d'), '1991-10-01');
+		$this->assertSame($date->setQuarter(4, DateTime::QUARTER_LAST_DAY)->format('Y-m-d'), '1991-12-31');
 	}
 
 	/**

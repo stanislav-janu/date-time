@@ -12,6 +12,13 @@ class DateTime extends \Nette\Utils\DateTime
 		QUARTER_FIRST_DAY = 2,
 		QUARTER_LAST_DAY = 4;
 
+	public function __construct($time = 'now', \DateTimeZone $timezone = null)
+	{
+		if($time instanceof \DateTime)
+			$time = $time->format(\DateTime::RFC3339_EXTENDED);
+		parent::__construct($time, $timezone);
+	}
+
 	/**
 	 * @param int|null $number
 	 * @param int      $fl
