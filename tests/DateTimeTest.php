@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace JCode\Tests\Crypt;
+namespace JCode\Tests\DateTime;
 
 use JCode\DateTime;
 use PHPUnit\Framework\TestCase;
 
-class ManagerTest extends TestCase
+class DateTimeTest extends TestCase
 {
 
 	public function testMain()
