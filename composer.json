@@ -10,17 +10,22 @@
 		}
 	],
 	"require": {
-		"php": ">=7.1.0",
-		"nette/utils": "^3.0"
+		"php": ">=8.1",
+		"nette/utils": "^4.0"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "^7"
+		"phpunit/phpunit": "^10"
 	},
 	"conflict": {
 		"nette/utils": "<2.4"
 	},
 	"autoload": {
 		"classmap": ["src/"]
+	},
+	"scripts": {
+		"cs-i": "rm -rf temp/nette-coding-standard && composer create-project nette/coding-standard=dev-master temp/nette-coding-standard && cp ./coding-standard/project.xml ./temp/nette-coding-standard/preset-sniffer/project.xml && cp ./coding-standard/project.php ./temp/nette-coding-standard/preset-fixer/project.php",
+		"cs": "php -d memory_limit=512M temp/nette-coding-standard/ecs check src --preset project",
+		"cs-f": "php -d memory_limit=512M temp/nette-coding-standard/ecs check src --preset project --fix"
 	},
 	"minimum-stability": "dev"
 }

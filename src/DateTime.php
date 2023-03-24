@@ -1,84 +1,83 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace JCode;
+declare(strict_types=1);
 
-/**
- * Class DateTime
- * @package JCode
- */
+namespace JanuSoftware;
+
+use DateTimeZone;
+
+
 class DateTime extends \Nette\Utils\DateTime
 {
-	const 
-		QUARTER_FIRST_DAY = 2,
-		QUARTER_LAST_DAY = 4;
+	public const
+		QuarterFirstDay = 2,
+		QuarterLastDay = 4;
 
-	public function __construct($time = 'now', \DateTimeZone $timezone = null)
+
+	public function __construct($time = 'now', DateTimeZone $timezone = null)
 	{
-		if ($time instanceof \DateTimeInterface)
-		{
+		if ($time instanceof \DateTimeInterface) {
 			$timezone = $time->getTimezone();
 			$time = $time->format(\DateTime::RFC3339_EXTENDED);
-		}
-		elseif (is_numeric($time))
-		{
-			if ($time <= self::YEAR)
+		} elseif (is_numeric($time)) {
+			if ($time <= self::YEAR) {
 				$time += time();
+			}
 
 			$time = '@' . $time;
-			$timezone = new \DateTimeZone(date_default_timezone_get());
-		}
-		elseif(is_null($time))
-		{
+			$timezone = new DateTimeZone(date_default_timezone_get());
+		} elseif ($time === null) {
 			$time = 'now';
 		}
 
 		parent::__construct($time, $timezone);
 	}
 
+
 	/**
 	 * @param int|null $number
 	 * @param int      $fl
 	 *
-	 * @return \JCode\DateTime
-	 * @throws \JCode\DateTimeException
+	 * @return DateTime
+	 * @throws DateTimeException
 	 */
-	public function setQuarter(int $number = null, int $fl = self::QUARTER_FIRST_DAY) : DateTime
+	public function setQuarter(int $number = null, int $fl = self::QuarterFirstDay): self
 	{
-		if(!in_array($number, [1, 2, 3, 4, null]))
-			throw new DateTimeException('Wrong argument in setQuarter on position one. Input value is: '. $number, 1);
+		if (!in_array($number, [1, 2, 3, 4, null], true)) {
+			throw new DateTimeException('Wrong argument in setQuarter on position one. Input value is: ' . $number, 1);
+		}
 
-		if(!in_array($fl, [self::QUARTER_FIRST_DAY, self::QUARTER_LAST_DAY]))
-			throw new DateTimeException('Wrong argument in setQuarter on position two. Input value is: '. $fl, 2);
+		if (!in_array($fl, [self::QuarterFirstDay, self::QuarterLastDay], true)) {
+			throw new DateTimeException('Wrong argument in setQuarter on position two. Input value is: ' . $fl, 2);
+		}
 
-		if($number === null)
-			$number = ceil(intval($this->format('n')) / 3);
+		if ($number === null) {
+			$number = ceil((int) ($this->format('n')) / 3);
+		}
 
 		$map = [
-			self::QUARTER_FIRST_DAY => [
+			self::QuarterFirstDay => [
 				1 => 'January',
 				2 => 'April',
 				3 => 'July',
-				4 => 'October'
+				4 => 'October',
 			],
-			self::QUARTER_LAST_DAY => [
+			self::QuarterLastDay => [
 				1 => 'March',
 				2 => 'June',
 				3 => 'September',
-				4 => 'December'
+				4 => 'December',
 			],
 		];
 
-		$this->modify(($fl === self::QUARTER_FIRST_DAY ? 'first' : 'last').' day of '.$map[$fl][$number]);
+		$this->modify(($fl === self::QuarterFirstDay ? 'first' : 'last') . ' day of ' . $map[$fl][$number]);
 
 		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function formatQuarter() : string
-	{
-		return $this->format('Y').'Q'.ceil(intval($this->format('n')) / 3);
-	}
 
+	public function formatQuarter(): string
+	{
+		return $this->format('Y') . 'Q' . ceil((int) ($this->format('n')) / 3);
+	}
 }

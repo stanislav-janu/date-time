@@ -1,5 +1,9 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace JCode;
+declare(strict_types=1);
 
-class DateTimeException extends \Exception {}
+namespace JanuSoftware;
+
+class DateTimeException extends \Exception
+{
+}
