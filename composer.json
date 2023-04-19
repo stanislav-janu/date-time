@@ -1,12 +1,12 @@
 {
 	"name": "stanislav-janu/date-time",
 	"description": "DateTime extension for nette",
-	"homepage": "https://lweb.cz",
+	"homepage": "https://janu.software",
 	"license": ["MIT"],
 	"authors": [
 		{
 			"name": "Stanislav Janů",
-			"homepage": "http://lweb.cz"
+			"homepage": "https://janu.software"
 		}
 	],
 	"require": {
@@ -27,5 +27,5 @@
 		"cs": "php -d memory_limit=512M temp/nette-coding-standard/ecs check src --preset project",
 		"cs-f": "php -d memory_limit=512M temp/nette-coding-standard/ecs check src --preset project --fix"
 	},
-	"minimum-stability": "dev"
+	"minimum-stability": "stable"
 }

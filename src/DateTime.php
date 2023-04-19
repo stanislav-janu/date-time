@@ -4,21 +4,22 @@ declare(strict_types=1);
 
 namespace JanuSoftware;
 
+use DateTimeInterface;
 use DateTimeZone;
+use Nette\Utils\DateTime as NetteDateTime;
 
 
-class DateTime extends \Nette\Utils\DateTime
+class DateTime extends NetteDateTime
 {
-	public const
-		QuarterFirstDay = 2,
-		QuarterLastDay = 4;
+	public const QuarterFirstDay = 2;
+	public const QuarterLastDay = 4;
 
 
 	public function __construct($time = 'now', DateTimeZone $timezone = null)
 	{
-		if ($time instanceof \DateTimeInterface) {
+		if ($time instanceof DateTimeInterface) {
 			$timezone = $time->getTimezone();
-			$time = $time->format(\DateTime::RFC3339_EXTENDED);
+			$time = $time->format(DateTimeInterface::RFC3339_EXTENDED);
 		} elseif (is_numeric($time)) {
 			if ($time <= self::YEAR) {
 				$time += time();
