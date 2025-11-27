@@ -15,7 +15,7 @@ class DateTime extends NetteDateTime
 	public const QuarterLastDay = 4;
 
 
-	public function __construct($time = 'now', DateTimeZone $timezone = null)
+	public function __construct($time = 'now', ?DateTimeZone $timezone = null)
 	{
 		if ($time instanceof DateTimeInterface) {
 			$timezone = $time->getTimezone();
@@ -42,7 +42,7 @@ class DateTime extends NetteDateTime
 	 * @return DateTime
 	 * @throws DateTimeException
 	 */
-	public function setQuarter(int $number = null, int $fl = self::QuarterFirstDay): self
+	public function setQuarter(?int $number = null, int $fl = self::QuarterFirstDay): self
 	{
 		if (!in_array($number, [1, 2, 3, 4, null], true)) {
 			throw new DateTimeException('Wrong argument in setQuarter on position one. Input value is: ' . $number, 1);
