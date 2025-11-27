@@ -71,7 +71,7 @@ class DateTime extends NetteDateTime
 			],
 		];
 
-		$this->modify(($fl === self::QuarterFirstDay ? 'first' : 'last') . ' day of ' . $map[$fl][$number]);
+		$this->modify(($fl === self::QuarterFirstDay ? 'first' : 'last') . ' day of ' . $map[$fl][$number] . ' ' . $this->format('Y'));
 
 		return $this;
 	}
